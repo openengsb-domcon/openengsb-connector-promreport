@@ -16,7 +16,7 @@
 package org.openengsb.connector.promreport.internal;
 
 import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry;
-import org.openengsb.core.common.Event;
+import org.openengsb.core.api.Event;
 
 public interface EventTransformator {
 

@@ -34,7 +34,7 @@ import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry;
 import org.openengsb.connector.promreport.internal.mxml.Data;
 import org.openengsb.connector.promreport.internal.mxml.Data.Attribute;
 import org.openengsb.connector.promreport.internal.mxml.Eventtypes;
-import org.openengsb.core.common.Event;
+import org.openengsb.core.api.Event;
 
 public abstract class EventTransformatorTest {
 

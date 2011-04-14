@@ -35,7 +35,7 @@ import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry;
 import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry.EventType;
 import org.openengsb.connector.promreport.internal.mxml.Data;
 import org.openengsb.connector.promreport.internal.mxml.Eventtypes;
-import org.openengsb.core.common.Event;
+import org.openengsb.core.api.Event;
 
 public class EventTransformatorImpl implements EventTransformator {
     private Log log = LogFactory.getLog(getClass());
