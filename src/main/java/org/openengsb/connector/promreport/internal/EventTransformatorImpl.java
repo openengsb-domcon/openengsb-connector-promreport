@@ -29,16 +29,16 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry;
 import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry.EventType;
 import org.openengsb.connector.promreport.internal.mxml.Data;
 import org.openengsb.connector.promreport.internal.mxml.Eventtypes;
 import org.openengsb.core.api.Event;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EventTransformatorImpl implements EventTransformator {
-    private Log log = LogFactory.getLog(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventTransformatorImpl.class);
     
     private DatatypeFactory dataTypeFactory;
     
@@ -50,8 +50,7 @@ public class EventTransformatorImpl implements EventTransformator {
         try {
             dataTypeFactory = DatatypeFactory.newInstance();
         } catch (DatatypeConfigurationException e) {
-            // set no timestamp
-            log.warn(e);
+            LOGGER.warn("error during creating of DataTypeFactory. Continue without setting timestamp.", e);
         }
     }
 
@@ -111,17 +110,14 @@ public class EventTransformatorImpl implements EventTransformator {
                         }                        
                         data.add(att);
                     } catch (IllegalAccessException e) {
-                        // don't add this attribute
-                        log.warn(e);
+                        LOGGER.warn("An attribute couldn't be read", e);
                     } catch (InvocationTargetException e) {
-                        // don't add this attribute
-                        log.warn(e);
+                        LOGGER.warn("Underlying Method throws an exception.", e);
                     }
                 }
             }
         } catch (IntrospectionException e) {
-            // don't add an attribute
-            log.warn(e);
+            LOGGER.warn("An exception occurs during introspection. No attribute was set.", e);
         }
         return data;
     }

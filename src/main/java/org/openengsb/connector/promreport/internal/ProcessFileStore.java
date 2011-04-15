@@ -37,25 +37,25 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openengsb.connector.promreport.internal.model.ProcessInstancePointer;
 import org.openengsb.connector.promreport.internal.mxml.Data;
 import org.openengsb.connector.promreport.internal.mxml.Process;
 import org.openengsb.connector.promreport.internal.mxml.ProcessInstance;
 import org.openengsb.connector.promreport.internal.mxml.WorkflowLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Keeps for each process one file in mxml format.
  */
 public class ProcessFileStore implements MxmlStore {
-    private Log log = LogFactory.getLog(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessFileStore.class);
     
     private File processDir;
     
     private final JAXBContext jaxbContext;
     private final XMLInputFactory xmlif;
-    private final Schema schema;
+    private Schema schema;
     
     private static final String ENDDOC = "    </Process>\n</WorkflowLog>\n";
     
@@ -68,11 +68,15 @@ public class ProcessFileStore implements MxmlStore {
         }
         try {
             jaxbContext = JAXBContext.newInstance(WorkflowLog.class);
-            schema =  SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-                new URL("http://is.tm.tue.nl/research/processmining/WorkflowLog.xsd"));
             xmlif = XMLInputFactory.newInstance();
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+        try {
+            schema = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+                new URL("http://is.tm.tue.nl/research/processmining/WorkflowLog.xsd"));
+        } catch (Exception e) {
+            LOGGER.warn("Error during creating of Mxml schema. Continue without schema validation.", e);
         }
     }
 
@@ -100,7 +104,7 @@ public class ProcessFileStore implements MxmlStore {
     }
     
     private void writeTo(File proFile, ProcessInstance pi) {
-        log.debug(String.format("write process instance %s to %s", pi.getId(), proFile.getName()));
+        LOGGER.debug("write process instance {} to {}", pi.getId(), proFile.getName());
         RandomAccessFile raf = null;
         try {
             raf = new RandomAccessFile(proFile, "rw");
@@ -127,7 +131,7 @@ public class ProcessFileStore implements MxmlStore {
     }
     
     private void createFile(File mxmlFile, String processId) {
-        log.debug(String.format("create file %s for process %s", mxmlFile.getName(), processId));
+        LOGGER.debug(String.format("create file %s for process %s", mxmlFile.getName(), processId));
         try {
             if (mxmlFile.createNewFile()) {
                 Marshaller m = jaxbContext.createMarshaller();
