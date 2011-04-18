@@ -16,14 +16,15 @@
    limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
     <groupId>org.openengsb.connector</groupId>
     <artifactId>openengsb-connector-parent</artifactId>
     <version>1.2.0-SNAPSHOT</version>
   </parent>
-
 
   <properties>
     <bundle.symbolicName>org.openengsb.connector.promreport</bundle.symbolicName>
@@ -39,8 +40,13 @@
 
   <packaging>bundle</packaging>
 
-  <description>ProM Report Connector implements the Report Domain and generates files in MXML format, which can be analyzed with the ProM framework.</description>
+  <description>
+    ProM Report Connector implements the Report Domain and generates files in MXML format, which can be analyzed with
+    the ProM framework.
+  </description>
+  
   <url>http://www.openengsb.org</url>
+  
   <licenses>
     <license>
       <name>Apache 2</name>
@@ -50,12 +56,12 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/openengsb/openengsb.git</connection>
-    <developerConnection>scm:git:git@github.com:openengsb/openengsb.git</developerConnection>
-    <url>http://github.com/openengsb/openengsb</url>
+    <connection>scm:git:git://github.com/openengsb/openengsb-connector-promreport.git</connection>
+    <developerConnection>scm:git:git@github.com:openengsb/openengsb-connector-promreport.git</developerConnection>
+    <url>http://github.com/openengsb/openengsb-connector-promreport</url>
   </scm>
 
-   <build>
+  <build>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
@@ -67,17 +73,14 @@
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-common</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-api</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.openengsb.domain</groupId>
       <artifactId>openengsb-domain-report</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openengsb.core</groupId>
