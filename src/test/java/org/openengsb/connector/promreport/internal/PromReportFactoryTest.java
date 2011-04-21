@@ -38,13 +38,16 @@ public class PromReportFactoryTest {
         ReportStore store = mock(ReportStore.class);
         when(storeFactory.createReportStore(Mockito.anyString())).thenReturn(store);
 
-        MxmlStoreFactory mxmlstoreFactory = mock(MxmlStoreFactory.class);
+        MxmlStoreFactory mxmlStoreFactory = mock(MxmlStoreFactory.class);
         MxmlStore mxmlStore = mock(MxmlStore.class);
-        Mockito.when(mxmlstoreFactory.createMxmlStore(Mockito.anyString())).thenReturn(mxmlStore);
+        Mockito.when(mxmlStoreFactory.createMxmlStore(Mockito.anyString())).thenReturn(mxmlStore);
 
         EventTransformator transformer = mock(EventTransformator.class);
 
-        PromReportFactory factory = new PromReportFactory(storeFactory, mxmlstoreFactory, transformer);
+        PromReportFactory factory = new PromReportFactory();
+        factory.setStoreFactory(storeFactory);
+        factory.setMxmlStoreFactory(mxmlStoreFactory);
+        factory.setEventTransformator(transformer);
 
         Map<String, String> attributes = new HashMap<String, String>();
         PromReportService reportService = (PromReportService) factory.createNewInstance("id");

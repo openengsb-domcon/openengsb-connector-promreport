@@ -29,8 +29,14 @@
       <entry key="connector" value="promreport" />
     </service-properties>
     <bean class="org.openengsb.connector.promreport.internal.PromReportFactory">
-      <property name="factory">
-        <bean class="org.openengsb.connector.promreport.internal.PromReportFactory" />
+      <property name="storeFactory" >
+        <bean class="org.openengsb.domain.report.common.FileSystemReportStoreFactory" />
+      </property>
+      <property name="mxmlStoreFactory">
+        <bean class="org.openengsb.connector.promreport.internal.ProcessFileStoreFactory" /> 
+      </property>
+      <property name="eventTransformator">
+        <bean class="org.openengsb.connector.promreport.internal.DefaultEventTransformator" /> 
       </property>
     </bean>
   </service>

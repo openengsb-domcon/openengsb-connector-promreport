@@ -23,16 +23,9 @@ import org.openengsb.domain.report.common.ReportStoreFactory;
 
 public class PromReportFactory extends AbstractConnectorInstanceFactory<PromReportService> {
 
-    private final ReportStoreFactory storeFactory;
-    private final MxmlStoreFactory mxmlStoreFactory;
+    private ReportStoreFactory storeFactory;
+    private MxmlStoreFactory mxmlStoreFactory;
     private EventTransformator eventTransformator;
-
-    public PromReportFactory(ReportStoreFactory storeFactory, MxmlStoreFactory mxmlStoreFactory,
-            EventTransformator eventTransformator) {
-        this.storeFactory = storeFactory;
-        this.mxmlStoreFactory = mxmlStoreFactory;
-        this.eventTransformator = eventTransformator;
-    }
 
     @Override
     public Domain createNewInstance(String id) {
@@ -46,6 +39,18 @@ public class PromReportFactory extends AbstractConnectorInstanceFactory<PromRepo
     @Override
     public void doApplyAttributes(PromReportService connector, Map<String, String> attributes) {
         // do nothing - currently no attributes defined
+    }
+
+    public void setStoreFactory(ReportStoreFactory storeFactory) {
+        this.storeFactory = storeFactory;
+    }
+
+    public void setMxmlStoreFactory(MxmlStoreFactory mxmlStoreFactory) {
+        this.mxmlStoreFactory = mxmlStoreFactory;
+    }
+
+    public void setEventTransformator(EventTransformator eventTransformator) {
+        this.eventTransformator = eventTransformator;
     }
 
 }
