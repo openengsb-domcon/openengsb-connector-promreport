@@ -37,12 +37,12 @@ import org.openengsb.core.api.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EventTransformatorImpl implements EventTransformator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventTransformatorImpl.class);
+public class DefaultEventTransformator implements EventTransformator {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultEventTransformator.class);
     
     private DatatypeFactory dataTypeFactory;
     
-    public EventTransformatorImpl() {
+    public DefaultEventTransformator() {
         initFactory();
     }
     

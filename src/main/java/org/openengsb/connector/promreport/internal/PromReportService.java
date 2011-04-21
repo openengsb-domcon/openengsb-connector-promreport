@@ -36,7 +36,7 @@ public class PromReportService extends AbstractReportDomain {
     private Set<String> activeReportIds = new HashSet<String>();
 
     private ReportPartStore partStore = new InMemoryReportPartStore();
-    private MxmlInMemoryStore mxmlTemp = new MxmlInMemoryStoreImpl();
+    private MxmlInMemoryStore mxmlTemp = new DefaultMxmlInMemoryStore();
     
     private MxmlStore mxmlStore;
     private EventTransformator transformer;

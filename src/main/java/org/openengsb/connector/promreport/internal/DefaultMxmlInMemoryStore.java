@@ -24,7 +24,7 @@ import org.openengsb.connector.promreport.internal.mxml.Process;
 import org.openengsb.connector.promreport.internal.mxml.ProcessInstance;
 import org.openengsb.connector.promreport.internal.mxml.WorkflowLog;
 
-public class MxmlInMemoryStoreImpl implements MxmlInMemoryStore {
+public class DefaultMxmlInMemoryStore implements MxmlInMemoryStore {
 
     Map<String, WorkflowLog> workflowMap = new HashMap<String, WorkflowLog>();
     

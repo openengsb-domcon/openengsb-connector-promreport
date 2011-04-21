@@ -15,11 +15,11 @@
  */
 package org.openengsb.connector.promreport.internal;
 
-public class MxmlInMemoryStoreImplTest extends MxmlInMemoryStoreTest {
+public class DefaultEventTransformatorTest extends EventTransformatorTest {
 
     @Override
-    protected MxmlInMemoryStore getMxmlStore() {
-        return new MxmlInMemoryStoreImpl();
+    protected EventTransformator getTransformator() {
+        return new DefaultEventTransformator();
     }
 
 }
