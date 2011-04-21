@@ -20,57 +20,33 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-  <reference id="securityInterceptor" interface="org.aopalliance.intercept.MethodInterceptor" />
-
-  <bean id="serviceManagerProxyFactory" class="org.openengsb.core.common.ProxyFactoryBean">
-    <property name="proxyInterfaces">
-      <list>
-        <value>org.openengsb.core.common.ServiceManager</value>
-      </list>
-    </property>
-    <property name="target" ref="realServiceManager" />
-    <property name="advices">
-      <list>
-        <ref component-id="securityInterceptor" />
-      </list>
-    </property>
-  </bean>
-
-  <reference id="persistenceManager" interface="org.openengsb.core.common.persistence.PersistenceManager" />
-
-  <bean id="connectorSetupStore" class="org.openengsb.core.common.connectorsetupstore.PersistenceConnectorSetupStore"
-    init-method="init">
-    <property name="persistenceManager" ref="persistenceManager" />
-    <property name="bundleContext" ref="blueprintBundleContext" />
-  </bean>
-
-  <service interface="org.openengsb.core.common.ServiceManager">
+  <service>
+    <interfaces>
+      <value>org.openengsb.core.api.ConnectorInstanceFactory</value>
+    </interfaces>
     <service-properties>
-      <entry key="domain" value="org.openengsb.domain.report.ReportDomain" />
+      <entry key="domain" value="report" />
       <entry key="connector" value="promreport" />
     </service-properties>
-    <bean factory-ref="serviceManagerProxyFactory" factory-method="getObject" />
+    <bean class="org.openengsb.connector.promreport.internal.PromReportFactory">
+      <property name="factory">
+        <bean class="org.openengsb.connector.promreport.internal.PromReportFactory" />
+      </property>
+    </bean>
   </service>
 
-  <bean id="realServiceManager" class="org.openengsb.connector.promreport.PromReportServiceManager"
-    init-method="init">
-    <argument>
-      <bean class="org.openengsb.connector.promreport.internal.PromReportFactory">
-        <argument>
-          <bean class="org.openengsb.domain.report.common.FileSystemReportStoreFactory" />
-        </argument>
-        <argument>
-          <bean class="org.openengsb.connector.promreport.internal.ProcessFileStoreFactory" />
-        </argument>
-        <argument>
-          <bean class="org.openengsb.connector.promreport.internal.EventTransformatorImpl" />
-        </argument>
-      </bean>
-    </argument>
-    <property name="connectorSetupStore" ref="connectorSetupStore" />
-    <property name="bundleContext" ref="blueprintBundleContext" />
-    <property name="securityInterceptor" ref="securityInterceptor" />
-  </bean>
+  <service>
+    <interfaces>
+      <value>org.openengsb.core.api.ConnectorProvider</value>
+    </interfaces>
+    <service-properties>
+      <entry key="domain" value="report" />
+      <entry key="connector" value="promreport" />
+    </service-properties>
+    <bean class="org.openengsb.connector.promreport.internal.PromReportConnectorProvider">
+      <property name="id" value="promreport" />
+      <property name="bundleContext" ref="blueprintBundleContext" />
+    </bean>
+  </service>
 
-  <reference id="persistenceServiceManager" interface="org.openengsb.core.common.persistence.PersistenceManager" />
 </blueprint>

@@ -31,23 +31,24 @@ import org.openengsb.domain.report.common.ReportStore;
 import org.openengsb.domain.report.common.ReportStoreFactory;
 
 public class PromReportFactoryTest {
-    
+
     @Test
     public void testCreatePromReportService() throws Exception {
         ReportStoreFactory storeFactory = mock(ReportStoreFactory.class);
         ReportStore store = mock(ReportStore.class);
         when(storeFactory.createReportStore(Mockito.anyString())).thenReturn(store);
-        
+
         MxmlStoreFactory mxmlstoreFactory = mock(MxmlStoreFactory.class);
         MxmlStore mxmlStore = mock(MxmlStore.class);
         Mockito.when(mxmlstoreFactory.createMxmlStore(Mockito.anyString())).thenReturn(mxmlStore);
-        
+
         EventTransformator transformer = mock(EventTransformator.class);
-        
+
         PromReportFactory factory = new PromReportFactory(storeFactory, mxmlstoreFactory, transformer);
 
         Map<String, String> attributes = new HashMap<String, String>();
-        PromReportService reportService = factory.createServiceInstance("id", attributes);
+        PromReportService reportService = (PromReportService) factory.createNewInstance("id");
+        factory.applyAttributes(reportService, attributes);
 
         assertThat(reportService, notNullValue());
         assertThat(reportService.getStore(), notNullValue());
