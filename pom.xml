@@ -29,6 +29,8 @@
   <properties>
     <bundle.symbolicName>org.openengsb.connector.promreport</bundle.symbolicName>
     <bundle.namespace>org.openengsb.connector.promreport</bundle.namespace>
+    <openengsb.domain.report.version>1.2.0-SNAPSHOT</openengsb.domain.report.version>
+    <openengsb.domain.report.range>(1.2.0,1.3.0]</openengsb.domain.report.range>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -44,9 +46,9 @@
     ProM Report Connector implements the Report Domain and generates files in MXML format, which can be analyzed with
     the ProM framework.
   </description>
-  
+
   <url>http://www.openengsb.org</url>
-  
+
   <licenses>
     <license>
       <name>Apache 2</name>
@@ -71,33 +73,31 @@
   </build>
 
   <dependencies>
-    <!-- OpenEngSB Dependencies -->
+    <!-- OpenEngSB Core References -->
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-api</artifactId>
-      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-common</artifactId>
-      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
-        <dependency>
+    <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-test</artifactId>
-      <version>${openengsb.version}</version>
       <scope>test</scope>
     </dependency>
 
-    <!-- Parent Domains -->
+    <!-- OpenEngSB Domain References -->
     <dependency>
       <groupId>org.openengsb.domain</groupId>
       <artifactId>openengsb-domain-report</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
+      <version>${openengsb.domain.report.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
 </project>
 
