@@ -1,3 +1,20 @@
+openengsb-connector-promreport-1.2.1 2011-05-24
+---------------------------------------------------------------------
+
+Upgrade OpenEngSB Domain Report to 1.2.1 and Framework to 1.3.0.M2. In addition included a bundle.info file.
+
+** Library Upgrade
+    * [OPENENGSB-1497] - Upgrade openengsb-domain-report to 1.2.1
+    * [OPENENGSB-1508] - Push connectors and domains to latest openengsb-framework-1.3.0.M1
+    * [OPENENGSB-1609] - Upgrade openengsb-framework to 1.3.0.M2
+
+** New Feature
+    * [OPENENGSB-948] - Add OSGI-INF/bundle.info as used in Karaf to the openengsb bundles
+
+** Task
+    * [OPENENGSB-1462] - Release openengsb-connector-promreport-1.2.1
+
+
 openengsb-connector-promreport-1.2.0 2011-04-27
 ---------------------------------------------------------------------
 
