@@ -26,6 +26,7 @@ import java.util.UUID;
 import org.openengsb.connector.promreport.internal.model.ProcessInstancePointer;
 import org.openengsb.core.api.AliveState;
 import org.openengsb.core.api.Event;
+import org.openengsb.core.api.ekb.EngineeringKnowledgeBaseService;
 import org.openengsb.domain.report.NoSuchReportException;
 import org.openengsb.domain.report.common.AbstractReportDomain;
 import org.openengsb.domain.report.model.Report;
@@ -40,6 +41,8 @@ public class PromReportService extends AbstractReportDomain {
     
     private MxmlStore mxmlStore;
     private EventTransformator transformer;
+    
+    private EngineeringKnowledgeBaseService ekbService;
 
     public PromReportService(String id) {
         super(id);
@@ -121,12 +124,17 @@ public class PromReportService extends AbstractReportDomain {
 
     private Report doGenerateReport(String reportName, String reportId) {
         List<ReportPart> parts = partStore.getParts(reportId);
-        Report report = new Report(reportName);
+        Report report = ekbService.createEmptyModelObject(Report.class);
+        report.setName(reportName);
         report.setParts(parts);
         return report;
     }
 
     private String generatePartName(Event e) {
         return e.getClass().getName() + " - " + new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date());
+    }
+    
+    public void setEkbService(EngineeringKnowledgeBaseService ekbService) {
+        this.ekbService = ekbService;
     }
 }
