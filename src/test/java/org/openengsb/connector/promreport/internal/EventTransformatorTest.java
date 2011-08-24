@@ -146,14 +146,17 @@ public abstract class EventTransformatorTest {
             this.objectField = objectField;
         }
 
+        @SuppressWarnings("unused")
         public String getStringField() {
             return this.stringField;
         }
 
+        @SuppressWarnings("unused")
         public int getIntField() {
             return this.intField;
         }
 
+        @SuppressWarnings("unused")
         public Object getObjectField() {
             return this.objectField;
         }
