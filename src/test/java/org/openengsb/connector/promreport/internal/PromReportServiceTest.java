@@ -18,7 +18,6 @@ package org.openengsb.connector.promreport.internal;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,13 +25,10 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.openengsb.connector.promreport.internal.model.ProcessInstancePointer;
 import org.openengsb.connector.promreport.internal.mxml.WorkflowLog;
 import org.openengsb.core.api.AliveState;
 import org.openengsb.core.api.Event;
-import org.openengsb.core.api.ekb.EngineeringKnowledgeBaseService;
 import org.openengsb.domain.report.NoSuchReportException;
 import org.openengsb.domain.report.common.ReportStore;
 import org.openengsb.domain.report.common.SimpleReportPart;
@@ -55,16 +51,6 @@ public class PromReportServiceTest {
         reportService.setStore(store);
         reportService.setMxmlStore(mxmlStore);
         reportService.setTransformer(transformer);
-        
-        EngineeringKnowledgeBaseService ekbService = mock(EngineeringKnowledgeBaseService.class);
-        doAnswer(new Answer<java.lang.Object>() {
-            public java.lang.Object answer(InvocationOnMock invocation) {
-                return new TestReport("");
-            }
-        })
-            .when(ekbService).createEmptyModelObject(Report.class);
-        
-        reportService.setEkbService(ekbService);
     }
 
     @Test(expected = NoSuchReportException.class)
@@ -77,7 +63,6 @@ public class PromReportServiceTest {
         String reportId = reportService.collectData();
         Report report = reportService.generateReport(reportId, "foo", "bar");
         assertThat(report.getName(), is("bar"));
-        verify(store).storeReport("foo", report);
         verify(mxmlStore).persist(null);
     }
 
