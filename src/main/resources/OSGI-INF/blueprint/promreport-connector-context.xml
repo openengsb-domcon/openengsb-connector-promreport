@@ -39,7 +39,6 @@
         <bean class="org.openengsb.connector.promreport.internal.DefaultEventTransformator" /> 
       </property>
       <property name="reportEvents" ref="reportEvents" />
-      <property name="ekbService" ref="ekbService" /> 
     </bean>
   </service>
 
@@ -58,6 +57,5 @@
   </service>
   
   <reference id="reportEvents" interface="org.openengsb.domain.report.ReportDomainEvents" />
-  <reference id="ekbService" interface="org.openengsb.core.api.ekb.EngineeringKnowledgeBaseService" />
 
 </blueprint>
