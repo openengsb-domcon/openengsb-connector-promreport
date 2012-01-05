@@ -27,8 +27,8 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.openengsb.domain.report.common.ReportStore;
-import org.openengsb.domain.report.common.ReportStoreFactory;
+import org.openengsb.domain.report.ReportStore;
+import org.openengsb.domain.report.ReportStoreFactory;
 
 public class PromReportFactoryTest {
 

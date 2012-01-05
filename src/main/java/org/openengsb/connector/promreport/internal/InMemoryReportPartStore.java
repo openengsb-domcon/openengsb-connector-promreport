@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.openengsb.domain.report.model.ReportPart;
+import org.openengsb.domain.report.ReportPart;
 
 public class InMemoryReportPartStore implements ReportPartStore {
 

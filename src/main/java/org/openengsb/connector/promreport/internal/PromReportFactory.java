@@ -20,7 +20,7 @@ import java.util.Map;
 import org.openengsb.core.api.Connector;
 import org.openengsb.core.common.AbstractConnectorInstanceFactory;
 import org.openengsb.domain.report.ReportDomainEvents;
-import org.openengsb.domain.report.common.ReportStoreFactory;
+import org.openengsb.domain.report.ReportStoreFactory;
 
 public class PromReportFactory extends AbstractConnectorInstanceFactory<PromReportService> {
 

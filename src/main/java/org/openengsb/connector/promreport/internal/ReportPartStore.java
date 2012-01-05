@@ -18,7 +18,7 @@ package org.openengsb.connector.promreport.internal;
 
 import java.util.List;
 
-import org.openengsb.domain.report.model.ReportPart;
+import org.openengsb.domain.report.ReportPart;
 
 public interface ReportPartStore {
 

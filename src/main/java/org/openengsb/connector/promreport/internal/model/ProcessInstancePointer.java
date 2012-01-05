@@ -18,7 +18,7 @@ package org.openengsb.connector.promreport.internal.model;
 import java.util.List;
 
 import org.openengsb.core.api.model.OpenEngSBModelEntry;
-import org.openengsb.domain.report.model.ReportPart;
+import org.openengsb.domain.report.ReportPart;
 
 public class ProcessInstancePointer implements ReportPart {
 
