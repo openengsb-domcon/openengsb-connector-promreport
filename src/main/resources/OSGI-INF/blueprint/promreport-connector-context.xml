@@ -30,7 +30,7 @@
     </service-properties>
     <bean class="org.openengsb.connector.promreport.internal.PromReportFactory">
       <property name="storeFactory" >
-        <bean class="org.openengsb.domain.report.common.FileSystemReportStoreFactory" />
+        <bean class="org.openengsb.domain.report.FileSystemReportStoreFactory" />
       </property>
       <property name="mxmlStoreFactory">
         <bean class="org.openengsb.connector.promreport.internal.ProcessFileStoreFactory" /> 
@@ -55,7 +55,8 @@
       <property name="bundleContext" ref="blueprintBundleContext" />
     </bean>
   </service>
-  
+
   <reference id="reportEvents" interface="org.openengsb.domain.report.ReportDomainEvents" />
 
 </blueprint>
+
