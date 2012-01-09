@@ -1,3 +1,28 @@
+openengsb-connector-promreport-2.0.0 2011-05-24
+---------------------------------------------------------------------
+
+The 2.0.0 release of the prom report connector a) adapts all interfaces and implementations to the latest 
+domain/openengsb versions and b) implements EDB/EKB access.
+
+### Details
+** Bug
+    * [OPENENGSB-2329] - adapt promreport connector to current openengsb-framework
+    * [OPENENGSB-2582] - Domains and Connectors need to include our snapshot repo to work with deployed snapshots correctly
+
+** Improvement
+    * [OPENENGSB-1847] - Enhance promreport connector with EDB/EKB access
+    * [OPENENGSB-2577] - add short description to connector-manual
+    * [OPENENGSB-2586] - Include issuetracker, buildserver and inceptionYear from root
+
+** Task
+    * [OPENENGSB-2567] - move connector documentation to corresponding connector-repositories
+    * [OPENENGSB-2568] - adapt connector to new flat package structure
+    * [OPENENGSB-2618] - Release connector-promreport 2.0.0
+
+### Known Issues
+
+Non by now
+
 openengsb-connector-promreport-1.2.1 2011-05-24
 ---------------------------------------------------------------------
 
