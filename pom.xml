@@ -28,7 +28,7 @@
   <properties>
     <bundle.symbolicName>org.openengsb.connector.promreport</bundle.symbolicName>
     <bundle.namespace>org.openengsb.connector.promreport</bundle.namespace>
-    <openengsb.domain.version>2.0.0-SNAPSHOT</openengsb.domain.version>
+    <openengsb.domain.version>2.0.0</openengsb.domain.version>
     <openengsb.domain.range>[2.0,2.1)</openengsb.domain.range>
     <openengsb.framework.version>2.1.2</openengsb.framework.version>
   </properties>
