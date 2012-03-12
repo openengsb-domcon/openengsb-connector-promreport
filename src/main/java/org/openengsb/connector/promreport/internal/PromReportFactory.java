@@ -19,7 +19,6 @@ import java.util.Map;
 
 import org.openengsb.core.api.Connector;
 import org.openengsb.core.common.AbstractConnectorInstanceFactory;
-import org.openengsb.domain.report.ReportDomainEvents;
 import org.openengsb.domain.report.ReportStoreFactory;
 
 public class PromReportFactory extends AbstractConnectorInstanceFactory<PromReportService> {
@@ -27,9 +26,6 @@ public class PromReportFactory extends AbstractConnectorInstanceFactory<PromRepo
     private ReportStoreFactory storeFactory;
     private MxmlStoreFactory mxmlStoreFactory;
     private EventTransformator eventTransformator;
-    
-    @SuppressWarnings("unused")
-    private ReportDomainEvents reportEvents;
 
     @Override
     public Connector createNewInstance(String id) {
@@ -56,9 +52,4 @@ public class PromReportFactory extends AbstractConnectorInstanceFactory<PromRepo
     public void setEventTransformator(EventTransformator eventTransformator) {
         this.eventTransformator = eventTransformator;
     }
-
-    public void setReportEvents(ReportDomainEvents reportEvents) {
-        this.reportEvents = reportEvents;
-    }
-
 }
