@@ -15,13 +15,9 @@
  */
 package org.openengsb.connector.promreport.internal.model;
 
-import java.util.List;
-
-import org.openengsb.core.api.model.OpenEngSBModelEntry;
 import org.openengsb.domain.report.ReportPart;
 
-public class ProcessInstancePointer implements ReportPart {
-
+public class ProcessInstancePointer extends ReportPart {
     private Long processId;
     private String processInstanceId;
     private String partName;
@@ -79,18 +75,4 @@ public class ProcessInstancePointer implements ReportPart {
     public void setPartName(String partName) {
         this.partName = partName;
     }
-
-    @Override
-    public void addOpenEngSBModelEntry(OpenEngSBModelEntry arg0) {
-    }
-
-    @Override
-    public List<OpenEngSBModelEntry> getOpenEngSBModelEntries() {
-        return null;
-    }
-
-    @Override
-    public void removeOpenEngSBModelEntry(String arg0) {
-    }
-
 }

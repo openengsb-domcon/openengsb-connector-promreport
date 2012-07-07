@@ -21,8 +21,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 
@@ -30,6 +28,11 @@ import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+import org.openengsb.connector.promreport.internal.events.TestDomainEndEvent;
+import org.openengsb.connector.promreport.internal.events.TestDomainFailEvent;
+import org.openengsb.connector.promreport.internal.events.TestDomainStartEvent;
+import org.openengsb.connector.promreport.internal.events.TestDomainSuccessEvent;
+import org.openengsb.connector.promreport.internal.events.TestRandomXYZEvent;
 import org.openengsb.connector.promreport.internal.mxml.AuditTrailEntry;
 import org.openengsb.connector.promreport.internal.mxml.Data;
 import org.openengsb.connector.promreport.internal.mxml.Data.Attribute;
@@ -78,7 +81,7 @@ public abstract class EventTransformatorTest {
         assertThat(ae.getWorkflowModelElement(), is(NAME));
         
         List<Attribute> atts = ae.getData().getAttribute();
-        assertThat(atts.size(), is(4));
+        assertThat(atts.size(), is(5));
         
         Matcher<Data.Attribute> stringName = hasProperty("name", is("stringField"));
         Matcher<Attribute> stringValue = hasProperty("value", is("foo"));
@@ -107,22 +110,21 @@ public abstract class EventTransformatorTest {
     
     @Test
     public void transform_ShouldGuessAnEventtype() {
-        Event e = mock(Event.class);
-        when(e.getType()).thenReturn("DomainStartEvent");
+        Event e = new TestDomainStartEvent();
         assertThat(transformer.transform(e).getEventType().getValue(), is(Eventtypes.START));
         
-        when(e.getType()).thenReturn("DomainSuccessEvent");
+        e = new TestDomainSuccessEvent();
         assertThat(transformer.transform(e).getEventType().getValue(), is(Eventtypes.COMPLETE));
         
-        when(e.getType()).thenReturn("DomainEndEvent");
+        e = new TestDomainEndEvent();
         assertThat(transformer.transform(e).getEventType().getValue(), is(Eventtypes.COMPLETE));
         
-        when(e.getType()).thenReturn("DomainFailEvent");
+        e = new TestDomainFailEvent();
         assertThat(transformer.transform(e).getEventType().getValue(), is(Eventtypes.PI_ABORT));
         
-        when(e.getType()).thenReturn("XYZ");
+        e = new TestRandomXYZEvent();
         assertThat(transformer.transform(e).getEventType().getValue(), is(Eventtypes.UNKNOWN));
-        assertThat(transformer.transform(e).getEventType().getUnknowntype(), is("xyz"));
+        assertThat(transformer.transform(e).getEventType().getUnknowntype(), is("testrandomxyzevent"));
     }    
 
     private static class TestEvent extends Event {

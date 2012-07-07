@@ -26,7 +26,6 @@ import java.util.UUID;
 import org.openengsb.connector.promreport.internal.model.ProcessInstancePointer;
 import org.openengsb.core.api.AliveState;
 import org.openengsb.core.api.Event;
-import org.openengsb.core.common.util.ModelUtils;
 import org.openengsb.domain.report.AbstractReportDomain;
 import org.openengsb.domain.report.NoSuchReportException;
 import org.openengsb.domain.report.Report;
@@ -122,7 +121,7 @@ public class PromReportService extends AbstractReportDomain {
 
     private Report doGenerateReport(String reportName, String reportId) {
         List<ReportPart> parts = partStore.getParts(reportId);
-        Report report = ModelUtils.createEmptyModelObject(Report.class);
+        Report report = new Report();
         report.setName(reportName);
         report.setParts(parts);
         return report;

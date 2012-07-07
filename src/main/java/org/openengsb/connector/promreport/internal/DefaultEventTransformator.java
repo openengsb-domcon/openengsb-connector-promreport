@@ -123,12 +123,7 @@ public class DefaultEventTransformator implements EventTransformator {
     }
     
     private EventType guessEventType(Event e) {
-        String classname;
-        if (e.getType() != null) {
-            classname = e.getType().toLowerCase();
-        } else {
-            classname = e.getClass().getSimpleName().toLowerCase();
-        }
+        String classname = e.getClass().getSimpleName().toLowerCase();
         
         EventType type = new EventType();
         if (classname.contains("start")) {
